@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Web Application</title>
+    <meta charset="utf-8" />
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+	<style>
+	  #floating-panel {
+        position: absolute;
+        top: 500px;
+        left: 75%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: left;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+	  
+	  </style>
+</head>
+<body>
+ 
+    <div id="map" style="width: 1500px; height: 800px"></div>
+	<div id="floating-panel">
+     <h2>SAMUEL SITUMA WEB MAP APPLICATION</h2>
+	 <div class="container">
+	 <caption>
+	  <h3>KEY</h3>
+	  <img src="images/green.png" alt="green" width="20" height="20"> &nbsp; Data from data_2(1).csv file
+	  </caption><br>
+	   <caption>
+	  <img src="images/red.jpg" alt="red" width="20" height="20"> &nbsp; Data from data_3(1).csv file
+	  </caption>
+	 </div>
+    </div>
+<script src="points.js"></script>
+    <script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+		
+    </script>
+	
+	
+
+    <script>
+var RedIcon = new L.Icon({
+  iconUrl: 'images/marker-icon-2x-red.png',
+  shadowUrl: 'images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+ // shadowSize: [41, 41]
+});
+var GreenIcon = new L.Icon({
+  iconUrl: 'images/marker-icon-2x-green.png',
+  shadowUrl: 'images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+ // shadowSize: [41, 41]
+});
+
+     var map = L.map('map').setView([-1.280006,36.8287744], 3);
+        mapLink = 
+            '<a href="http://osm.org/copyright">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 13,
+            }).addTo(map);
+
+	for (var i = 0; i < planes.length; i++) {
+		L.marker([planes[i][2],planes[i][1]],
+			 {icon: GreenIcon}).addTo(map).bindPopup(planes[i][0])
+			  .on('mouseover', function (e) {
+                this.openPopup();
+               })
+			   .on('mouseout', function (e) {
+            this.closePopup();
+        });
+ 		}
+		for (var j = 0;j< planes1.length;j++) {
+			 L.marker([planes1[j][2],planes1[j][1]],
+				 {icon: RedIcon}).addTo(map).bindPopup(planes[j][0])
+				 .on('mouseover', function (e) {
+                this.openPopup();
+               })
+			   .on('mouseout', function (e) {
+            this.closePopup();
+        });
+          
+		}
+               
+    </script>
+</body>
+</html>
