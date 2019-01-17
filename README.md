@@ -1,5 +1,5 @@
 # map_app1
-#Follow this instructions
+# Follow this instructions
 Clone the project to your local computer
 Extract the files and copy them to htdocs folder in xammp folder
 Run the web application using localhost 
